@@ -1,2 +1,7 @@
 # The pool of tears
 
+```{r}
+library(tidymodels)
+```
+
+
