@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Machine Learning with Tidy Models Framework</title>
-  <meta name="description" content="Machine Learning with Tidy Models Framework" />
+  <title>Chapter 4 Recipe Object | Machine Learning with Tidy Models Framework</title>
+  <meta name="description" content="Chapter 4 Recipe Object | Machine Learning with Tidy Models Framework" />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Machine Learning with Tidy Models Framework" />
+  <meta property="og:title" content="Chapter 4 Recipe Object | Machine Learning with Tidy Models Framework" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Machine Learning with Tidy Models Framework" />
+  <meta name="twitter:title" content="Chapter 4 Recipe Object | Machine Learning with Tidy Models Framework" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="a-caucus-race-and-a-long-tale.html"/>
 
-<link rel="next" href="the-pool-of-tears.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -159,14 +159,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Machine Learning with Tidy Models Framework</h1>
-<p class="author"><em>Amit Shankar</em></p>
-<p class="date"><em>2022-11-05</em></p>
-</div>
-<div id="tidy-models" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Tidy Models<a href="index.html#tidy-models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Content coming soon</p>
+<div id="recipe-object" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Recipe Object<a href="recipe-object.html#recipe-object" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Lets explore the recipe object</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="recipe-object.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb5-2"><a href="recipe-object.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb5-3"><a href="recipe-object.html#cb5-3" aria-hidden="true" tabindex="-1"></a>iris_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(iris, <span class="at">prop =</span> <span class="fl">0.75</span>, <span class="at">strata =</span> Species)</span>
+<span id="cb5-4"><a href="recipe-object.html#cb5-4" aria-hidden="true" tabindex="-1"></a>iris_training <span class="ot">&lt;-</span> iris_split <span class="sc">%&gt;%</span> <span class="fu">training</span>()</span>
+<span id="cb5-5"><a href="recipe-object.html#cb5-5" aria-hidden="true" tabindex="-1"></a>iris_testing <span class="ot">&lt;-</span> iris_split <span class="sc">%&gt;%</span> <span class="fu">testing</span>()</span></code></pre></div>
+<p>Explore the training dataset</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="recipe-object.html#cb6-1" aria-hidden="true" tabindex="-1"></a>iris_training <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code></pre></div>
+<pre><code>## Rows: 111
+## Columns: 5
+## $ Sepal.Length &lt;dbl&gt; 5.1, 4.9, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.8, 4.8, 5.8, 5.…
+## $ Sepal.Width  &lt;dbl&gt; 3.5, 3.0, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.4, 3.0, 4.0, 3.…
+## $ Petal.Length &lt;dbl&gt; 1.4, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.6, 1.4, 1.2, 1.…
+## $ Petal.Width  &lt;dbl&gt; 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.2, 0.1, 0.2, 0.…
+## $ Species      &lt;fct&gt; setosa, setosa, setosa, setosa, setosa, setosa, setosa, s…</code></pre>
+<p>Explore the testing dataset</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="recipe-object.html#cb8-1" aria-hidden="true" tabindex="-1"></a>iris_testing <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code></pre></div>
+<pre><code>## Rows: 39
+## Columns: 5
+## $ Sepal.Length &lt;dbl&gt; 4.7, 4.6, 5.0, 4.3, 5.7, 5.4, 5.0, 5.0, 4.8, 5.4, 4.9, 4.…
+## $ Sepal.Width  &lt;dbl&gt; 3.2, 3.1, 3.6, 3.0, 4.4, 3.4, 3.0, 3.4, 3.1, 3.4, 3.1, 3.…
+## $ Petal.Length &lt;dbl&gt; 1.3, 1.5, 1.4, 1.1, 1.5, 1.7, 1.6, 1.6, 1.6, 1.5, 1.5, 1.…
+## $ Petal.Width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.1, 0.4, 0.2, 0.2, 0.4, 0.2, 0.4, 0.2, 0.…
+## $ Species      &lt;fct&gt; setosa, setosa, setosa, setosa, setosa, setosa, setosa, s…</code></pre>
+<p>create the recipe object</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="recipe-object.html#cb10-1" aria-hidden="true" tabindex="-1"></a>recipe01 <span class="ot">&lt;-</span> <span class="fu">recipe</span>(Species<span class="sc">~</span>., <span class="at">data =</span> iris_training) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="recipe-object.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric</span>())</span>
+<span id="cb10-3"><a href="recipe-object.html#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="recipe-object.html#cb10-4" aria-hidden="true" tabindex="-1"></a>recipe01</span></code></pre></div>
+<pre><code>## Recipe
+## 
+## Inputs:
+## 
+##       role #variables
+##    outcome          1
+##  predictor          4
+## 
+## Operations:
+## 
+## Centering and scaling for all_numeric()</code></pre>
 
 </div>
             </section>
@@ -174,8 +208,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
+<a href="a-caucus-race-and-a-long-tale.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="the-pool-of-tears.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -206,7 +240,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/amitshankar/tidymodel/edit/master/index.Rmd",
+"link": "https://github.com/amitshankar/tidymodel/edit/master/04-Recipe-Object.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -214,7 +248,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/amitshankar/tidymodel/blob/master/index.Rmd",
+"link": "https://github.com/amitshankar/tidymodel/blob/master/04-Recipe-Object.Rmd",
 "text": null
 },
 "download": null,

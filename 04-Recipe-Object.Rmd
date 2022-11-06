@@ -1,0 +1,30 @@
+# Recipe Object
+
+Lets explore the recipe object
+
+```{r}
+library(tidymodels)
+data(iris)
+iris_split <- initial_split(iris, prop = 0.75, strata = Species)
+iris_training <- iris_split %>% training()
+iris_testing <- iris_split %>% testing()
+```
+
+Explore the training dataset
+```{r}
+iris_training %>% glimpse()
+```
+Explore the testing dataset
+
+```{r}
+iris_testing %>% glimpse()
+```
+create the recipe object
+
+```{r}
+recipe01 <- recipe(Species~., data = iris_training) %>% 
+  step_normalize(all_numeric())
+
+recipe01
+```
+
